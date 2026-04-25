@@ -1,0 +1,39 @@
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, StackingClassifier
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+iris = load_iris()
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.2, random_state=42
+)
+
+# Random Forest
+rf = RandomForestClassifier(n_estimators=100)
+rf.fit(X_train, y_train)
+
+# AdaBoost
+ada = AdaBoostClassifier(n_estimators=100)
+ada.fit(X_train, y_train)
+
+# Stacking
+estimators = [
+    ('rf', RandomForestClassifier()),
+    ('svc', SVC(probability=True))
+]
+
+stack = StackingClassifier(
+    estimators=estimators,
+    final_estimator=LogisticRegression()
+)
+stack.fit(X_train, y_train)
+
+# Accuracy Results
+print(f"Random Forest Accuracy: {accuracy_score(y_test, rf.predict(X_test)):.2f}")
+print(f"AdaBoost Accuracy: {accuracy_score(y_test, ada.predict(X_test)):.2f}")
+print(f"Stacking Accuracy: {accuracy_score(y_test, stack.predict(X_test)):.2f}")

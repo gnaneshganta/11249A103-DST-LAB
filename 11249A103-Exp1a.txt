@@ -1,0 +1,94 @@
+import numpy as np
+# 1 Array creation
+a= np.array([1,2,3,4,5])
+b= np.arange(1,10,2)
+c= np.linspace(0,1,5)
+d= np.zeros((2,2))
+e= np.ones((2,2))
+f= np.eye(3)
+g= np.random.randint(1,100,size=(3,3))
+print("array a:",a)
+print("arange b:",b)
+print("linspace c:",c)
+print("zeros d:\n",d)
+print("ones e:\n",e)
+print("identity f:\n",f)
+print("random g:\n",g)
+# 2️ Array Properties
+print("\nShape:", g.shape)
+print("Dimensions:", g.ndim)
+print("Size:", g.size)
+print("Data type:", g.dtype)
+
+# 3️ Reshape & Transpose
+reshaped = g.reshape(1, 9)
+print("\nReshaped array:", reshaped)
+print("Transpose:\n", g.T)
+print("Flattened:", g.flatten())
+
+# 4️ Mathematical Operations
+print("\nAdd:", np.add(a, 2))
+print("Multiply:", np.multiply(a, 3))
+print("Square Root:", np.sqrt(a))
+print("Power:", np.power(a, 2))
+print("Absolute:", np.abs([-1, -2, 3]))
+
+# 5 satistical functions
+print("mean:",np.mean(a))
+print("median:",np.median(a))
+print("standard deviation :",np.std(a))
+print("variance:",np.min(a))
+print("minimum:",np.min(a))
+print("maximum:",np.max(a))
+print("sum:",np.sum(a))
+print("percentile(50):",np.percentile(a,50))
+
+# 6 axis-based operations
+print("\ncolumn-wise sum:\n",np.sum(g,axis=0))
+print("row-wise mean:\n",np.mean(g,axis=1))
+
+#7 indexing and slicing
+print("\nfirst element:",a[0])
+print("slice:",a[1:4])
+print("2D slice:\n",g[0:2,1:3])
+
+#8 boolean & conditional
+print("\nwhere >50:\n",np.where(g>50))
+print("any > 90:",np.any(g>90))
+print("all > 50:",np.all(g>0))
+
+#9 sorting & searching
+print("\nSorted array:", np.sort(a))
+print("Index of max:", np.argmax(a))
+print("Index of min:", np.argmin(a))
+print("unique elements:",np.unique([1,2,2,3,4,4]))
+
+#10 linear algebra
+x=np.array([[1,2],[3,4]])
+y=np.array([[5,6],[7,8]])
+print("\nDot product:\n",np.dot(x,y))
+print("inverse:\n",np.linalg.inv(x))
+print("determinant:\n",np.linalg.det(x))
+
+#11 random functions
+np.random.seed(1)
+rand_sample=np.random.choice(a,size=3)
+print("\nRandom choice:",rand_sample)
+
+#12 stack & concatenate
+h1=np.array([1,2,3])
+h2=np.array([4,5,6])
+print("\nconcatenate:",np.concatenate((h1,h2)))
+print(" vetical stack:\n",np.vstack((h1,h2)))
+print("horizontal stack:\n",np.hstack((h1,h2)))
+
+ #13 save and load
+np.save("sample_array.npy",a)
+loaded=np.load("sample_array.npy")
+print("\nloaded array:",loaded)
+
+
+
+
+
+

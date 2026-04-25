@@ -1,0 +1,49 @@
+import pandas as pd
+
+# A. Creating DataFrame from a Dictionary
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'Paris', 'London']
+}
+
+df = pd.DataFrame(data)
+
+# Viewing data
+print(df.head())        # First 5 rows
+print(df.info())        # Summary of data types and non-nulls
+print(df.describe())    # Statistical summary
+
+# B. Selection and Filtering
+
+# Selecting a column
+ages = df['Age']
+print(ages)
+
+# Filtering rows
+above_25 = df[df['Age'] > 25]
+print(above_25)
+
+# iloc (integer-based) vs loc (label-based)
+row_0 = df.iloc[0]               # First row
+print(row_0)
+
+specific_val = df.loc[0, 'City'] # Value at row 0, column 'City'
+print(specific_val)
+
+# C. Data Cleaning (Handling Missing Values)
+
+# Checking for nulls
+print(df.isnull().sum())
+
+# Dropping missing values
+df_clean = df.dropna()
+print(df_clean)
+
+# Filling missing values with 0
+df_filled = df.fillna(0)
+print(df_filled)
+
+# Filling 'Age' column with mean (if needed)
+df['Age'] = df['Age'].fillna(df['Age'].mean())
+print(df)
